@@ -15,11 +15,19 @@ export class BooksService {
   ) {}
 
   async findAll(): Promise<Books[]> {
-    return await this.bookRepository.find({});
+    try {
+      return await this.bookRepository.find({});
+    } catch (err) {
+      return err;
+    }
   }
 
   async findById(id: string): Promise<Books> {
-    return await this.bookRepository.findOneById(id);
+    try {
+      return await this.bookRepository.findOneById(id);
+    } catch (err) {
+      return err;
+    }
   }
 
   async insert(book: BookDto): Promise<Books> {
@@ -29,7 +37,11 @@ export class BooksService {
       newBook[key] = book[key];
     });
 
-    return await this.bookRepository.save(newBook);
+    try {
+      return await this.bookRepository.save(newBook);
+    } catch (err) {
+      return err;
+    }
   }
 
   async update(oldBook: Books, updated_values: BookDto): Promise<Books> {
@@ -39,7 +51,20 @@ export class BooksService {
       updatedBook[key] = updated_values[key];
     });
 
-    return await this.bookRepository.save(updatedBook);
+    try {
+      return await this.bookRepository.save(updatedBook);
+    } catch (err) {
+      return err;
+    }
+
+  }
+
+  async delete(id: string) {
+   try {
+      return await this.bookRepository.deleteById(id);
+    } catch (err) {
+      return err;
+    }
   }
 
 }

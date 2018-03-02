@@ -31,4 +31,9 @@ export class BooksController {
     return await this.booksService.update(oldBook, updatedBook);
   }
 
+  @Delete(':id')
+  async delete(@Param() params) {
+    return await this.booksService.delete(params.id);
+  }
+
 }

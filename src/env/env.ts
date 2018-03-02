@@ -7,6 +7,6 @@ export const ENV = {
     password: 'root',
     database: 'nestjs_books_api',
     entities: [__dirname + '/../**/*.entity{.ts, .js}'],
-    synchroniz: true
+    synchronize: true
   }
 }
